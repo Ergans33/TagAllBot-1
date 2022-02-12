@@ -16,60 +16,60 @@ LOGGER = logging.getLogger(__name__)
 api_id = int(os.environ.get("APP_ID"))
 api_hash = os.environ.get("API_HASH")
 bot_token = os.environ.get("TOKEN")
-sankibot = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
+aditya = TelegramClient('client', api_id, api_hash).start(bot_token=bot_token)
 
 moment_worker = []
 
 
 #start
-@sankibot.on(events.NewMessage(pattern="^/start$"))
+@aditya.on(events.NewMessage(pattern="^/start$"))
 async def start(event):
-  await event.reply("💥 Hello, I am »» Member Tagger\n💞 Bot> For » Telegram » Groups\n🌷 Feel » Free » to » Use » Me ....\n💐 Click /help More Information.**",
+  await event.reply("**💥 Hello, I am »» Member Tagger\n💞 Bot> For » Telegram » Groups\n🌷 Feel » Free » to » Use » Me ....\n💐 Click /help More Information.**",
                     buttons=(
-                    
                       [
-                         Button.url('ᴜᴘᴅᴀᴛᴇs', 'https://t.me/adityaserver'), 
-                         Button.url('sᴜᴘᴘᴏʀᴛ', 'https://t.me/adityadiscus'), 
+                        Button.url('💥 My ✓ Owner 💞', 'https://t.me/adityahalder'),   
+                      ],
+                      [
+                         Button.url('📢 Updates 📢', 'https://t.me/adityaserver'), 
+                         Button.url('💬 Support 💬', 'https://t.me/adityadiscus'), 
                       ], 
                       [
-                        Button.url('➕ ADD ME TO YOUR GROUP', 'https://t.me/tagallprobot?startgroup=true'),   
+                        Button.url('📝 Source Code 📝', 'https://github.com/mradityaxd/tagallbot'),   
                       ]
                    ), 
                     link_preview=False
                    )
 
 #help
-@sankibot.on(events.NewMessage(pattern="^/help$"))
+@aditya.on(events.NewMessage(pattern="^/help$"))
 async def help(event):
-  helptext = "**💥 Hello, I am »» Member Tagger💞 Bot> For » Telegram » Groups
-🌷 Feel » Free » to » Use » Me ....
-💐 Click /help More Information."
+  helptext = "**💥 Hello, I am »» Member Tagger\n💞 Bot> For » Telegram » Groups\n🌷 Feel » Free » to » Use » Me ....\n💐 Click /help More Information.**"
   await event.reply(helptext,
                     buttons=(
                       [
-                         Button.url('ᴜᴘᴅᴀᴛᴇs', 'https://t.me/adityaserver'), 
-                         Button.url('sᴜᴘᴘᴏʀᴛ', 'https://t.me/adityadiscus'), 
+                        Button.url('💥 My ✓ Owner 💞', 'https://t.me/adityahalder'),   
+                      ],
+                      [
+                         Button.url('📢 Updates 📢', 'https://t.me/adityaserver'), 
+                         Button.url('💬 Support 💬', 'https://t.me/adityadiscus'), 
                       ], 
                       [
-                        Button.url('➕ ADD ME TO YOUR GROUP', 'https://t.me/MEMBER_TAGERBOT?startgroup=true'),   
+                        Button.url('📝 Source Code 📝', 'https://github.com/mradityaxd/tagallbot'),   
                       ]
                    ), 
                     link_preview=False
                    )
 
 #Wah bhaiya full ignorebazzi
-
-#bsdk credit de dena verna maa chod dege
-
 #tag
-@sankibot.on(events.NewMessage(pattern="^/tagall|/call|/tall|/all|#all|@all?(.*)"))
+@aditya.on(events.NewMessage(pattern="^/tagall|/call|/tall|/all|#all|@all?(.*)"))
 async def mentionall(event):
   global moment_worker
   if event.is_private:
     return await event.respond("Use This In Channel or Group!")
   
   admins = []
-  async for admin in sankibot.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
+  async for admin in aditya.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
     return await event.respond("Only Admin can use it.")
@@ -91,14 +91,14 @@ async def mentionall(event):
     moment_worker.append(event.chat_id)
     usrnum = 0
     usrtxt = ""
-    async for usr in sankibot.iter_participants(event.chat_id):
+    async for usr in aditya.iter_participants(event.chat_id):
       usrnum += 1
       usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
       if event.chat_id not in moment_worker:
         await event.respond("Stopped!")
         return
       if usrnum == 5:
-        await sankibot.send_message(event.chat_id, f"{usrtxt}\n\n{msg}")
+        await aditya.send_message(event.chat_id, f"{usrtxt}\n\n{msg}")
         await asyncio.sleep(2)
         usrnum = 0
         usrtxt = ""
@@ -109,14 +109,14 @@ async def mentionall(event):
  
     usrnum = 0
     usrtxt = ""
-    async for usr in sankibot.iter_participants(event.chat_id):
+    async for usr in aditya.iter_participants(event.chat_id):
       usrnum += 1
       usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
       if event.chat_id not in moment_worker:
         await event.respond("Stopped")
         return
       if usrnum == 5:
-        await sankibot.send_message(event.chat_id, usrtxt, reply_to=msg)
+        await aditya.send_message(event.chat_id, usrtxt, reply_to=msg)
         await asyncio.sleep(2)
         usrnum = 0
         usrtxt = ""
@@ -124,7 +124,7 @@ async def mentionall(event):
 
 # Cancle 
 
-@sankibot.on(events.NewMessage(pattern="^/cancel$"))
+@aditya.on(events.NewMessage(pattern="^/cancel$"))
 async def cancel_spam(event):
   if not event.chat_id in spam_chats:
     return await event.respond('__There is no proccess on going...__')
@@ -140,4 +140,4 @@ async def cancel_spam(event):
 
 print("Started Successfully Join Support")
 print("¯\_(ツ)_/¯ Need Help Join @AdityaDiscus")
-sankibot.run_until_disconnected()
+aditya.run_until_disconnected()
