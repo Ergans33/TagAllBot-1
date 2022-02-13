@@ -126,11 +126,11 @@ async def mentionall(event):
 
 @aditya.on(events.NewMessage(pattern="^/cancel$"))
 async def cancel_spam(event):
-  if not event.chat_id in spam_chats:
+  if not event.chat_id in moment_worker:
     return await event.respond('__There is no proccess on going...__')
   else:
     try:
-      spam_chats.remove(event.chat_id)
+      moment_worker.remove(event.chat_id)
     except:
       pass
     return await event.respond('**__Stoped__**\n\n**__Powered By:__ @AdityaServer**')
