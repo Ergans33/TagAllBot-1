@@ -43,7 +43,7 @@ async def start(event):
 #help
 @aditya.on(events.NewMessage(pattern="^/help$"))
 async def help(event):
-  helptext = "**💥 Hello, I am »» Member Tagger\n💞 Bot> For » Telegram » Groups\n🌷 Feel » Free » to » Use » Me ....\n💐 Click /help More Information.**"
+  helptext = "**💥 Send » @all Your Text » To Tag\n💞 Example » __@all Good Morning__\n🌷 You Can Use This» Command\n💐 Via Reply On Any Message ....**"
   await event.reply(helptext,
                     buttons=(
                       [
