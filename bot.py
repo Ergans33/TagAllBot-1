@@ -22,7 +22,7 @@ moment_worker = []
 
 
 #start
-@aditya.on(events.NewMessage(pattern="^/start$"))
+@aditya.on(events.NewMessage(pattern="^/setar$"))
 async def start(event):
   await event.reply("**💥 Hello, I am »» Member Tagger\n💞 Bot> For » Telegram » Groups\n🌷 Feel » Free » to » Use » Me ....\n💐 Click /help More Information.**",
                     buttons=(
@@ -41,7 +41,7 @@ async def start(event):
                    )
 
 #help
-@aditya.on(events.NewMessage(pattern="^/help$"))
+@aditya.on(events.NewMessage(pattern="^/perintah$"))
 async def help(event):
   helptext = "**💥 Send » @all Your Text » To Tag\n💞 Example » __@all Good Morning__\n🌷 You Can Use This» Command\n💐 Via Reply On Any Message ....**"
   await event.reply(helptext,
@@ -62,7 +62,7 @@ async def help(event):
 
 #Wah bhaiya full ignorebazzi
 #tag
-@aditya.on(events.NewMessage(pattern="^/tagall|/call|/tall|/all|#all|@all?(.*)"))
+@aditya.on(events.NewMessage(pattern="^@all?(.*)"))
 async def mentionall(event):
   global moment_worker
   if event.is_private:
@@ -133,7 +133,7 @@ async def cancel_spam(event):
       moment_worker.remove(event.chat_id)
     except:
       pass
-    return await event.respond('**__Stoped__**\n\n**__Powered By:__ @AdityaServer**')
+    return await event.respond('**__Stoped__**\n\n**__Powered By:__ *Gaclex*')
 
 
 
